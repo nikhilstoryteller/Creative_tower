@@ -57,7 +57,7 @@
     
     "offer_promotion": "Identify any offers or promotions in the image in one to five words per point, separated by commas. Note elements like discounts, limited-time offers, or exclusivity. Provide keywords or short phrases only. Example Output: – Limited time, exclusive offer, 20% off. List only comma-separated keywords related to offers and promotions.",
     
-    "hook_binary": "Examine the image to determine if there is a hook, such as an intriguing headline, emotional appeal, or other attention-grabbing elements. Respond with True if a hook is present, otherwise respond with False. Respond only with True or False. Respond only with True or False.",
+    "hook_binary": "Examine the image to determine if there is a hook, such as an intriguing headline, emotional appeal, or other attention-grabbing elements. Respond with True if a hook is present, otherwise respond with False. Respond only with True or False.",
     
     "offer_binary": "Inspect the image for any indication of an offer or promotion, such as discounts, limited-time offers, or similar promotional elements. Respond with True if an offer or promotion is present, otherwise respond with False. Respond only with True or False Respond only with True or False.",
     

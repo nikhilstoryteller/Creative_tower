@@ -39,7 +39,7 @@
     
     "hook_presence": "Examine any hook in the image in one to five words per point, separated by commas. Identify hooks like bold statements, emotional appeal, humor, or shock value. Provide keywords or short phrases only. Example Output: – Bold statement, emotional appeal, eye-catching. List only comma-separated keywords describing the hook elements.",
     
-    "target_audience": "Describe traits of the target audience based on the image in one to five words per point, separated by commas. Note age, gender, cultural background, interests, lifestyle. Provide keywords or short phrases only. Example Output: – Young adults, tech-savvy, urban lifestyle. List only comma-separated keywords for target audience traits.",",
+    "target_audience": "Describe traits of the target audience based on the image in one to five words per point, separated by commas. Note age, gender, cultural background, interests, lifestyle. Provide keywords or short phrases only. Example Output: – Young adults, tech-savvy, urban lifestyle. List only comma-separated keywords for target audience traits.",
     
     "cultural_relevance": "Observe cultural relevance in the image in one to five words per point, separated by commas. Note symbols, traditions, language, or themes meaningful to the target audience. Provide keywords or short phrases only. Example Output: – Pop culture references, youth appeal. List only comma-separated keywords for cultural references.",
     
@@ -51,15 +51,15 @@
     
     "platform_features": "Identify platform-specific features in the image, if any, in one to five words per point, separated by commas. Note aspect ratios, native elements, or platform-focused design choices. Provide keywords or short phrases only. Example Output: – Swipe up, mobile-friendly, native layout. List only comma-separated keywords for platform-specific features. ",
     
-    "symbols_icons": "Identify symbols, icons, or visual shorthand in the image in one to five words per point, separated by commas. Note if they clarify meaning, enhance interest, or provide cultural references. Provide keywords or short phrases only. Example Output: – Icons, clear meaning, brand logo. List only comma-separated keywords for depth of field.",",
+    "symbols_icons": "Identify symbols, icons, or visual shorthand in the image in one to five words per point, separated by commas. Note if they clarify meaning, enhance interest, or provide cultural references. Provide keywords or short phrases only. Example Output: – Icons, clear meaning, brand logo. List only comma-separated keywords for depth of field.",
     
     "depth_of_field": "Observe depth of field in the image in one to five words per point, separated by commas. Note shallow or deep focus, visual hierarchy, and focal emphasis. Provide keywords or short phrases only. Example Output: – Shallow focus, blurred background, subject highlight. List only comma-separated keywords for depth of field.",
     
-    "offer_promotion": "Identify any offers or promotions in the image in one to five words per point, separated by commas. Note elements like discounts, limited-time offers, or exclusivity. Provide keywords or short phrases only. Example Output: – Limited time, exclusive offer, 20% off. List only comma-separated keywords related to offers and promotions.",",
+    "offer_promotion": "Identify any offers or promotions in the image in one to five words per point, separated by commas. Note elements like discounts, limited-time offers, or exclusivity. Provide keywords or short phrases only. Example Output: – Limited time, exclusive offer, 20% off. List only comma-separated keywords related to offers and promotions.",
     
     "hook_binary": "Examine the image to determine if there is a hook, such as an intriguing headline, emotional appeal, or other attention-grabbing elements. Respond with True if a hook is present, otherwise respond with False. Respond only with True or False. Respond only with True or False.",
     
-    "offer_binary": "Inspect the image for any indication of an offer or promotion, such as discounts, limited-time offers, or similar promotional elements. Respond with True if an offer or promotion is present, otherwise respond with False. Respond only with True or False Respond only with True or False..",
+    "offer_binary": "Inspect the image for any indication of an offer or promotion, such as discounts, limited-time offers, or similar promotional elements. Respond with True if an offer or promotion is present, otherwise respond with False. Respond only with True or False Respond only with True or False.",
     
     "cta_binary": "Analyze the image and determine if a call to action (CTA) element, such as a button, text, or symbol prompting action, is present. Respond with True if a CTA. Respond only with True or False.",
 

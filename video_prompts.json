@@ -24,26 +24,15 @@
     "business_tags": "Analyze the video and generate a single, combined set of contextual tags that are relevant from a business perspective. Identify keywords that relate to product features, services offered, brand values, industry sector, marketing campaign themes, competitive advantages, target market, unique selling propositions, and any relevant business strategies. Eliminate duplicate or redundant tags. Provide only comma-separated keywords related to business context.",
     "product_tags": "Analyze the video and generate a single, combined set of relevant tags that describe the key elements of the product. Focus on keywords related to the product type, brand, target audience, features, benefits, functionalities, materials, sizes, colors, usage occasions, design or aesthetic qualities, and any unique selling points. Eliminate duplicate or redundant tags. Provide only comma-separated keywords describing product features.",
     "brand_cues": "Examine brand integration from the video and provide some tags observation. Note brand cues like logo placement, product usage, or colors. Ensure the response eliminates duplicate or redundant observations. Provide only comma-separated keywords for brand cues.",
-
     "platform_features": "Identify platform-specific features in these frames from the video and provide a single, combined observation. Note aspect ratios, native elements, or platform-focused design choices. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: – Swipe up, mobile-friendly, native layout. List only comma-separated keywords for platform-specific features.",
-    
     "symbols_icons": "Identify symbols, icons, or visual shorthand in these frames from the video and provide a single, combined observation. Note if they clarify meaning, enhance interest, or provide cultural references. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: – Icons, clear meaning, brand logo. List only comma-separated keywords describing symbols or icons.",
-    
     "depth_of_field": "Observe depth of field in these frames from the video and provide a single, combined observation. Note shallow or deep focus, visual hierarchy, and focal emphasis. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: – Shallow focus, blurred background, subject highlight. List only comma-separated keywords for depth of field.",
-    
     "offer_promotion": "Identify any offers or promotions in these frames from the video and provide a single, combined observation. Note elements like discounts, limited-time offers, or exclusivity. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: – Limited time, exclusive offer, 20% off. List only comma-separated keywords related to offers and promotions.",
-    
     "hook_binary": "Examine these frames from the video to determine if there is a hook, such as an intriguing headline, emotional appeal, or other attention-grabbing elements. Respond with True if a hook is present, otherwise respond with False. Respond only with True or False.",
-    
     "offer_binary": "Inspect these frames from the video for any indication of an offer or promotion, such as discounts, limited-time offers, or similar promotional elements. Respond with True if an offer or promotion is present, otherwise respond with False. Respond only with True or False.",
-    
     "cta_binary": "Analyze these frames from the video and determine if a call to action (CTA) element, such as a button, text, or symbol prompting action, is present. Respond with True if a CTA is present, otherwise respond with False. Respond only with True or False.",
-    
     "interactivity_binary": "Review these frames from the video to see if they suggest or encourage user interactivity, such as clickable elements or prompts. Respond with True if interactivity is suggested, otherwise respond with False. Respond only with True or False.",
-    
     "product_presence_binary": "Examine these frames from the video and identify if there is a product featured. Respond with True if a product is visible, otherwise respond with False. Respond only with True or False.",
-    
     "logo_presence_binary": "Analyze these frames from the video and determine whether there is a visible logo. Respond with True if a logo is present, otherwise respond with False. Respond only with True or False.",
-    
     "cta_specific": "Identify any calls to action (CTAs) in these frames from the video and generate a single, combined observation. Specify if the CTA is in the form of text, button, or symbol, and describe its emphasis and design for engagement. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: – Bold text, large button, high contrast, click here. Respond only with True or False."
 }

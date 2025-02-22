@@ -1,5 +1,4 @@
 {
-  "timestamp":"Tell me the time stamp of the section of the video where the hook is present",
-"frames":"Divide the video into frames and provide me the time stamp and tags of the frames or section of the video where the hook of the video is present. The tag would be related to what was happening in the hook.  also contain the time stamp of the section or frames. Ensure the response eliminates duplicate or redundant observations. Provide a response in a single line with only comma-separated keywords for layout composition. Do not start the response with any introductory statement."
-  
+    "timestamp": "Tell me the time stamp of the section of the video where the hook is present",
+    "frames": "Divide the video into frames and provide me the time stamp and tags of the frames or section of the video where the hook of the video is present. The tag would be related to what was happening in the hook.  also contain the time stamp of the section or frames. Ensure the response eliminates duplicate or redundant observations. Provide a response in a single line with only comma-separated keywords for layout composition. Do not start the response with any introductory statement."
 }

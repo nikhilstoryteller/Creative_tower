@@ -1,4 +1,4 @@
 {
-"frames":"Divide teh video in to framesa and provide me the tags of the frames or section of the video where the hook of the video is present. The tag would be related to what was happening in the hook.  Ensure the response eliminates duplicate or redundant observations. Provide a response in a single line with only comma-separated keywords for layout composition. Do not start the response with any introductory statement."
+"frames":"Divide teh video in to framesa and provide me the tags of the frames or section of the video where the hook of the video is present. The tag would be related to what was happening in the hook.  also contain the time stamp of the section or frames. Ensure the response eliminates duplicate or redundant observations. Provide a response in a single line with only comma-separated keywords for layout composition. Do not start the response with any introductory statement."
   
 }

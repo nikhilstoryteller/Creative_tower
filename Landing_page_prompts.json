@@ -7,6 +7,8 @@
     
     "cta_elements": "Identify CTAs in one to five words per point, separated by commas. Note design, placement, and text clarity. Example Output: – Sticky button, red CTA, clear text, urgency.Do not start the response with any introductory statement.",
     
+    "colours":"Identify all prominent colors in the video along with their specific variations and corresponding hex codes. Include dominant and accent colors. Format as: color name (variation, if any): hex code. Mention variations such as navy blue, beige, olive green, etc. Example Output: \u2013 Navy Blue: #000080, Beige: #F5F5DC, Bright Yellow: #FFFF00.Do not start the response with any introductory statement. **DO NOT PROVIDE ANYTHING ELSE OTHER THAN THE HEXCODES AND THEIRE RESPECTIVE COLORS**",
+    
     "trust_and_credibility_indicators": "Assess trust indicators in one to five words per point, separated by commas. Note testimonials, badges, or metrics. Example Output: – Verified badge, user reviews, success metrics, client logos.Do not start the response with any introductory statement.",
     
     "urgency_and_scarcity": "Analyze urgency and scarcity in one to five words per point, separated by commas. Note countdowns, exclusivity, or stock indicators. Example Output: – Limited stock, countdown timer, exclusive offer.Do not start the response with any introductory statement.",

@@ -46,5 +46,11 @@
     "useOfSymbolsAndIcons": "Identify symbols, icons, or visual shorthand in the image in one to five words per point, separated by commas. Note if they clarify meaning, enhance interest, or provide cultural references. Provide keywords or short phrases only. Example Output: – Icons, clear meaning, brand logo.",
     "depthOfField": "Observe depth of field in the image in one to five words per point, separated by commas. Note shallow or deep focus, visual hierarchy, and focal emphasis. Provide keywords or short phrases only. Example Output: – Shallow focus, blurred background, subject highlight.",
     "offerPromotion": "Identify any offers or promotions in the image in one to five words per point, separated by commas. Note elements like discounts, limited-time offers, or exclusivity. Provide keywords or short phrases only. Example Output: – Limited time, exclusive offer, 20% off.",
-    "ctaStyle": "Identify any calls to action (CTAs) in the image in one to five words per point. Specify if the CTA is in the form of text, button, or symbol, and describe its emphasis and design for engagement. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: \u2013 Bold text, large button, high contrast, click here."
+    "ctaStyle": "Identify any calls to action (CTAs) in the image in one to five words per point. Specify if the CTA is in the form of text, button, or symbol, and describe its emphasis and design for engagement. Ensure the response eliminates duplicate or redundant observations. Provide concise and unique keywords or short phrases only. Example Output: \u2013 Bold text, large button, high contrast, click here.",
+     
+  "ad_type": "Return exactly one word: image or video. If you cannot determine, return an empty string.",
+  "influencer": "Is an influencer/creator visibly featured as a focal human presenter? Answer True or False only. Consider face/body presence, direct-to-camera delivery, or clear creator-led narration.",
+  "what_was_the_content": "Summarize the core content briefly as comma-separated tags (e.g., unboxing, tutorial, lifestyle, demo, testimonial, humor skit, behind the scenes). No sentences, no preface.",
+  "count_of_products_showcased": "Count how many distinct products are clearly showcased (packaging, logo, or unique SKU). Return only a number as plain text (0, 1, 2, ...)."
+
 }

@@ -51,6 +51,33 @@
   "ad_type": "Return exactly one word: image or video. If you cannot determine, return an empty string.",
   "influencer": "Is an influencer/creator visibly featured as a focal human presenter? Answer True or False only. Consider face/body presence, direct-to-camera delivery, or clear creator-led narration.",
   "what_was_the_content": "Summarize the core content briefly as comma-separated tags (e.g., unboxing, tutorial, lifestyle, demo, testimonial, humor skit, behind the scenes). No sentences, no preface.",
-  "count_of_products_showcased": "Count how many distinct products are clearly showcased (packaging, logo, or unique SKU). Return only a number as plain text (0, 1, 2, ...)."
+  "count_of_products_showcased": "Count how many distinct products are clearly showcased (packaging, logo, or unique SKU). Return only a number as plain text (0, 1, 2, ...).",
+
+    
+  "axis_ConsumerTimelineLifeEvents": {
+    "definition": "Moments in a person’s journey that shape needs or timing (e.g., new patient onboarding, post-op recovery, annual checkups, open enrollment, new job/role, relocation, clinic launch).",
+    "classificationPrompt": "Decide if the creative uses a Consumer Timeline/Life Event based ONLY on visible/legible cues (onscreen text, overlays, dates, timelines, obvious situations). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"new patient onboarding\",\"post-discharge\"]) OR null if none are clearly present. No other fields, no extra text. Include 1–3 precise values if and only if evidence is clear; otherwise return null."
+  },
+  "axis_SeasonalCulturalTriggers": {
+    "definition": "Time-bound seasons, holidays, observances, or culturally specific moments (e.g., flu season, year-end, Diwali, Christmas, Ramadan, Breast Cancer Awareness Month).",
+    "classificationPrompt": "Determine if the creative leverages a Seasonal or Cultural Trigger using visible cues (holiday terms, seasonal phrases, visuals). OUTPUT STRICTLY EITHER an array of concrete values (e.g., [\"flu season\",\"Diwali\"]) OR null if absent/unclear. No extra fields. Provide 1–3 values only when clearly evidenced."
+  },
+  "axis_TrendBasedViralFormats": {
+    "definition": "Platform-native trends or meme structures (e.g., POV, before/after split, duet/stitch, green-screen explainer, meme caption split, CapCut template, trending sound).",
+    "classificationPrompt": "Check for Trend-Based/Viral format patterns (POV label, before/after framing, duet/stitch UI, green-screen). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"before/after\",\"POV\"]) OR null if none. No extra fields or text. Only include when clearly present."
+  },
+  "axis_EmotionalMindsetThemes": {
+    "definition": "Dominant emotions or cognitive frames used to persuade (e.g., relief, trust, urgency, pride, reassurance, competence, FOMO).",
+    "classificationPrompt": "Assess whether explicit Emotional/Mindset themes are used (copy tone, badges, headlines). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"relief\",\"trust\"]) OR null if unclear/absent. No extra fields. Include 1–3 values only with clear cues."
+  },
+  "axis_ContentArchetypesFormats": {
+    "definition": "Structural patterns and creative templates (e.g., how-to, product demo, comparison, testimonial, objection-handling, checklist, myth vs fact).",
+    "classificationPrompt": "Identify Content Archetypes/Formats from structure and overlays (e.g., steps, side-by-side compare, quoted testimonial). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"how-to\",\"testimonial\"]) OR null if not evidenced. No extra fields. 1–3 values max."
+  },
+  "axis_CustomAxis_SocialProof": {
+    "definition": "Brand-specific pillar for social proof/credibility (e.g., star ratings, review quotes, case counts, client logos, press badges, ROI metrics).",
+    "classificationPrompt": "Detect Social Proof signals (★★★★★, review snippets, “X practices served”, logo bar, press badges, quantified outcomes). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"star ratings\",\"logo bar\"]) OR null if absent. No extra fields. Include only with clear evidence."
+  }
+
 
 }

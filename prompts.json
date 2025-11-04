@@ -61,30 +61,104 @@
   "count_of_products_showcased": "Count how many distinct products are clearly showcased (packaging, logo, or unique SKU). Return only a number as plain text (0, 1, 2, ...).",
 
     
-  "axis_ConsumerTimelineLifeEvents": {
-    "definition": "Moments in a person’s journey that shape needs or timing (e.g., new patient onboarding, post-op recovery, annual checkups, open enrollment, new job/role, relocation, clinic launch).",
-    "classificationPrompt": "Decide if the creative uses a Consumer Timeline/Life Event based ONLY on visible/legible cues (onscreen text, overlays, dates, timelines, obvious situations). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"new patient onboarding\",\"post-discharge\"]) OR null if none are clearly present. No other fields, no extra text. Include 1–3 precise values if and only if evidence is clear; otherwise return null."
+ "axis_ConsumerTimelineLifeEvents": {
+    "definition": "Detect visible, legible cues of consumer timeline or life-event context ONLY (onscreen text, overlays, explicit situations). Ignore inferred intent.",
+    "classificationPrompt": "Choose only from the allowed list below. OUTPUT STRICTLY either a JSON array of values (1–3) or null if none is clearly evidenced. No extra text.\n\nAllowed values:\n- new_patient_onboarding\n- post_discharge\n- annual_checkup\n- open_enrollment\n- new_job_role\n- relocation\n- clinic_launch\n\n(Use only if explicitly visible.)"
   },
-  "axis_SeasonalCulturalTriggers": {
-    "definition": "Time-bound seasons, holidays, observances, or culturally specific moments (e.g., flu season, year-end, Diwali, Christmas, Ramadan, Breast Cancer Awareness Month).",
-    "classificationPrompt": "Determine if the creative leverages a Seasonal or Cultural Trigger using visible cues (holiday terms, seasonal phrases, visuals). OUTPUT STRICTLY EITHER an array of concrete values (e.g., [\"flu season\",\"Diwali\"]) OR null if absent/unclear. No extra fields. Provide 1–3 values only when clearly evidenced."
-  },
-  "axis_TrendBasedViralFormats": {
-    "definition": "Platform-native trends or meme structures (e.g., POV, before/after split, duet/stitch, green-screen explainer, meme caption split, CapCut template, trending sound).",
-    "classificationPrompt": "Check for Trend-Based/Viral format patterns (POV label, before/after framing, duet/stitch UI, green-screen). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"before/after\",\"POV\"]) OR null if none. No extra fields or text. Only include when clearly present."
-  },
-  "axis_EmotionalMindsetThemes": {
-    "definition": "Dominant emotions or cognitive frames used to persuade (e.g., relief, trust, urgency, pride, reassurance, competence, FOMO).",
-    "classificationPrompt": "Assess whether explicit Emotional/Mindset themes are used (copy tone, badges, headlines). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"relief\",\"trust\"]) OR null if unclear/absent. No extra fields. Include 1–3 values only with clear cues."
-  },
-  "axis_ContentArchetypesFormats": {
-    "definition": "Structural patterns and creative templates (e.g., how-to, product demo, comparison, testimonial, objection-handling, checklist, myth vs fact).",
-    "classificationPrompt": "Identify Content Archetypes/Formats from structure and overlays (e.g., steps, side-by-side compare, quoted testimonial). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"how-to\",\"testimonial\"]) OR null if not evidenced. No extra fields. 1–3 values max."
-  },
-  "axis_CustomAxis_SocialProof": {
-    "definition": "Brand-specific pillar for social proof/credibility (e.g., star ratings, review quotes, case counts, client logos, press badges, ROI metrics).",
-    "classificationPrompt": "Detect Social Proof signals (★★★★★, review snippets, “X practices served”, logo bar, press badges, quantified outcomes). OUTPUT STRICTLY EITHER an array of specific values (e.g., [\"star ratings\",\"logo bar\"]) OR null if absent. No extra fields. Include only with clear evidence."
-  }
 
+  "axis_ConsumerTimelineLifeEvents__micro_moments": {
+    "definition": "Detect explicit micro-moment signals visible in the creative (copy/UI labels/overlays). Ignore inferred search intent.",
+    "classificationPrompt": "From the list below, return a JSON array (1–3) or null. No extra text.\n\nAllowed values:\n- i_want_to_know__curiosity_sparked\n- i_want_to_know__problem_googling\n- i_want_to_know__solution_research\n- i_want_to_go__location_based\n- i_want_to_go__urgency_driven\n- i_want_to_go__convenience_seeking\n- i_want_to_do__diy_intent\n- i_want_to_do__tutorial_seeking\n- i_want_to_do__skill_building\n- i_want_to_buy__comparison_mode\n- i_want_to_buy__deal_hunting\n- i_want_to_buy__ready_to_purchase"
+  },
+
+  "axis_ConsumerTimelineLifeEvents__life_transitions": {
+    "definition": "Detect explicit life-transition contexts only when clearly shown/legible (text/visual scenario).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- career__first_job\n- career__promotion\n- career__career_change\n- career__retirement\n- relationship__dating\n- relationship__commitment\n- relationship__parenthood\n- relationship__empty_nest\n- financial__first_purchase\n- financial__debt_freedom\n- financial__investment_start\n- financial__inheritance"
+  },
+
+  "axis_SeasonalCulturalTriggers": {
+    "definition": "Detect explicit seasonal/holiday/cultural triggers visible in text/visuals. Ignore inferred timing.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values (common):\n- flu_season\n- year_end\n- diwali\n- christmas\n- ramadan\n- breast_cancer_awareness_month"
+  },
+
+  "axis_SeasonalCulturalTriggers__micro_seasons": {
+    "definition": "Detect explicit weekly/monthly/quarterly timing cues presented in the creative.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- weekly__monday_motivation\n- weekly__wednesday_slump\n- weekly__thursday_anticipation\n- weekly__sunday_scaries\n- monthly__month_start\n- monthly__mid_month\n- monthly__month_end\n- quarterly__q1\n- quarterly__q2\n- quarterly__q3\n- quarterly__q4"
+  },
+
+  "axis_SeasonalCulturalTriggers__cultural_layers": {
+    "definition": "Detect explicit cultural/generational/subcultural moments indicated in copy/visuals.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- generational__boomer_nostalgia\n- generational__gen_x_cynicism\n- generational__millennial_anxiety\n- generational__gen_z_activism\n- subcultural__fandom_events\n- subcultural__movie_releases\n- subcultural__game_launches\n- subcultural__season_premieres\n- sports_moments__playoffs\n- sports_moments__drafts\n- sports_moments__trades\n- sports_moments__championships\n- tech_releases__iphone_launch\n- tech_releases__ces\n- tech_releases__black_friday\n- fashion_cycles__fashion_week\n- fashion_cycles__seasonal_collections"
+  },
+
+  "axis_TrendBasedViralFormats": {
+    "definition": "Detect platform-native trend/meme FORMATS only if the UI/labels/structure are visibly present.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- pov_label\n- before_after\n- duet_stitch\n- green_screen\n- meme_caption_split\n- capcut_template\n- trending_sound\n- split_screen\n- side_by_side_compare"
+  },
+
+  "axis_TrendLifecyclePositioning": {
+    "definition": "Detect the lifecycle positioning of a visible trend when it is explicitly suggested in copy/context.",
+    "classificationPrompt": "Return exactly one value in a JSON array (or null if unclear). No extra text.\n\nAllowed values:\n- emergence\n- growth\n- peak\n- decline"
+  },
+
+  "axis_EmotionalMindsetThemes": {
+    "definition": "Detect explicit emotion/mindset terms or badges in copy/overlays (not inferred feelings).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values (simple):\n- relief\n- trust\n- urgency\n- pride\n- reassurance\n- competence\n- fomo"
+  },
+
+  "axis_EmotionalMindsetThemes__emotional_cocktails": {
+    "definition": "Detect complex, explicitly signaled emotional combinations only when clearly indicated.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anticipation_joy\n- anticipation_fear\n- anticipation_anger\n- surprise_joy\n- surprise_sadness\n- surprise_fear\n- bittersweet\n- schadenfreude\n- impostor_syndrome\n- jomo"
+  },
+
+  "axis_ContentArchetypesFormats": {
+    "definition": "Detect visible structural templates in the creative (steps, splits, quotes, checklists, etc.).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- how_to\n- product_demo\n- comparison\n- testimonial\n- objection_handling\n- checklist\n- myth_vs_fact\n- explainer\n- review"
+  },
+
+  "axis_ContentArchetypesFormats__story_frameworks": {
+    "definition": "Detect explicit narrative frameworks if the structure is clearly shown (labels/sections).",
+    "classificationPrompt": "Return a JSON array (1–2) from the list or null. No extra text.\n\nAllowed values:\n- hero_journey\n- before_after_bridge\n- problem_agitation_solution\n- star_chain_hook"
+  },
+
+  "axis_CustomAxis_SocialProof": {
+    "definition": "Detect explicit social proof cues (stars, review quotes, counts, client logos, press badges, quantified outcomes).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- star_ratings\n- review_snippet\n- case_counts\n- client_logo_bar\n- press_badges\n- quantified_outcomes"
+  },
+
+  "axis_ConversionMechanics": {
+    "definition": "Detect explicit conversion mechanics visible in copy/UI (not inferred intent).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- direct_response__limited_time\n- direct_response__bonus_stacking\n- value_ladder__free_to_paid\n- objection_handling_sequence\n- risk_reversal__guarantee\n- risk_reversal__free_trial"
+  },
+
+  "axis_CognitiveBiases": {
+    "definition": "Detect explicit use of cognitive bias frames as shown in copy/badges/visual metaphors.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anchoring\n- social_proof__wisdom_of_crowds\n- social_proof__authority\n- social_proof__peer\n- loss_aversion\n- commitment_consistency"
+  },
+
+  "axis_PlatformNativeOptimization": {
+    "definition": "Detect explicit platform-native optimizations called out or visually evident (features/UI).",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- algo_friendly_format\n- native_feature__stories\n- native_feature__reels\n- native_feature__carousels\n- engagement_hack_pattern\n- platform_specific_cta"
+  },
+
+  "axis_DataDrivenInsights": {
+    "definition": "Detect explicit data-driven angles called out in the creative.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- search_intent_matching\n- competitor_gap_exploitation\n- customer_review_mining\n- support_ticket_insights"
+  },
+
+  "axis_SensoryPerceptual": {
+    "definition": "Detect explicit sensory/perceptual design cues that are visible or labeled.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- visual_hierarchy\n- color_psychology\n- motion_triggers\n- audio_music_emotion"
+  },
+
+  "axis_BehavioralPsychology": {
+    "definition": "Detect explicit behavioral psychology triggers when clearly indicated.",
+    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anchoring\n- social_proof__realtime_activity\n- loss_aversion\n- commitment_consistency\n- reciprocity\n- authority\n- scarcity\n- unity"
+  },
+
+  "axis_SensoryPerceptualDesign": {
+    "definition": "Detect specific sensory/perceptual design patterns and parameters when made explicit or clearly visible.",
+    "classificationPrompt": "Return a JSON array (1–4) from the list or null. No extra text.\n\nAllowed values:\n- hierarchy__z_pattern\n- hierarchy__f_pattern\n- hierarchy__gutenberg\n- contrast__cta_min_7_1\n- contrast__body_text_min_4_5_1\n- contrast__headline_max\n- color_emotion__red_urgency\n- color_emotion__blue_trust\n- color_emotion__green_growth\n- color_emotion__yellow_optimism\n- color_emotion__purple_luxury\n- color_emotion__orange_friendly\n- motion__micro_animation_hover_250ms\n- motion__loading_skeleton\n- motion__success_burst\n- scroll__parallax\n- scroll__reveal\n- scroll__sticky"
+  }
 
 }

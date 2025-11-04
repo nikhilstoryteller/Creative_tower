@@ -26,10 +26,10 @@
 
   "lightingStyle": "This category describes **light source characteristics** — not emotional or creative intent. Identify the type, direction, intensity, and tone of lighting visible. Output valid JSON:\n{\n  \"type\": \"natural | studio | mixed | artificial | unknown\",\n  \"intensity\": \"low | medium | high\",\n  \"direction\": \"front | side | back | top | diffuse | unknown\",\n  \"tone\": \"warm | cool | neutral | unknown\"\n}\nAvoid words like 'dramatic' or 'romantic'. Return JSON only.",
 
-  "editingStyle": "This category captures **post-processing and filter effects** visible in the creative — not content meaning. Describe the applied look, grain, vignetting, and overlays. Return valid JSON:\n{\n  \"color_treatment\": \"none | cool_filter | warm_filter | high_contrast | desaturated | cinematic | vintage | black_and_white | unknown\",\n  \"grain_or_texture\": \"none | subtle | noticeable | heavy | unknown\",\n  \"vignette\": true | false,\n  \"special_effects\": [\"motion_blur\", \"overlay\", \"lens_flare\", \"glow\", \"none\"]\n}\nReturn JSON only.",
-
-  "layoutAndComposition": "This category defines the **spatial arrangement and visual balance** of the creative. Focus on layout symmetry and subject placement. Ignore product, colors, or meaning. Return valid JSON:\n{\n  \"layout_type\": \"centered | asymmetrical | balanced | collage | split_frame | minimal | unknown\",\n  \"composition_rules\": [\"rule_of_thirds\", \"leading_lines\", \"symmetry\", \"negative_space\", \"none\"],\n  \"focal_point_position\": \"left | center | right | top | bottom | unknown\"\n}\nReturn JSON only.",
-
+  "editingStyle": "Observe the editing style in the image, with details in one to five words per point, separated by commas. Note color correction, filters, vignettes, and grain effects. Provide keywords or short phrases only. Example Output: – Cool filter, high contrast, subtle vignette.",
+   
+  "layoutAndComposition": "Describe the image's layout and composition in one to five words per point, separated by commas. Note rule of thirds, symmetry, balance, framing, focal points, and layout type. Provide keywords or short phrases only. Example Output: – Balanced, centered focus, negative space. Avoid words like 'brand logo' or telling me any tags not present, only tell what you see and present in the creative.",
+   
   "shotType": "This category identifies the **camera framing and perspective**. Describe the shot distance, camera angle, and subject focus. Ignore message or purpose. Return valid JSON:\n{\n  \"distance\": \"macro | close_up | medium | wide | aerial | unknown\",\n  \"angle\": \"eye_level | low_angle | high_angle | tilted | overhead | unknown\",\n  \"focus_subject\": \"person | product | scene | text | unknown\"\n}\nReturn JSON only.",
 
 

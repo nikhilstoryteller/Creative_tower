@@ -89,5 +89,4 @@
 
   "axis_SensoryPerceptualDesign": "Purpose: extract explicit sensory/perceptual design patterns or parameters. Sources: layout labels, contrast ratios shown, motion primitives, scroll behaviors. Examples (illustrative): z-pattern, f-pattern, gutenberg, 7:1 contrast, 4.5:1, parallax, reveal on scroll, sticky header, micro-animation 250ms. Rules: (1) output exact phrases if shown; (2) if only visually demonstrated, use concise snake_case (e.g., z_pattern, f_pattern, gutenberg_diagram, contrast_7_1, micro_animation_250ms, parallax_scroll, sticky_header, reveal_on_scroll); (3) numerals/symbols allowed; (4) no opinions. Output: comma-separated, lowercase; no spaces; no quotes. If none: empty string."
 
-
 }

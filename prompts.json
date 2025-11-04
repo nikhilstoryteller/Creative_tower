@@ -61,104 +61,29 @@
   "count_of_products_showcased": "Count how many distinct products are clearly showcased (packaging, logo, or unique SKU). Return only a number as plain text (0, 1, 2, ...).",
 
     
- "axis_ConsumerTimelineLifeEvents": {
-    "definition": "Detect visible, legible cues of consumer timeline or life-event context ONLY (onscreen text, overlays, explicit situations). Ignore inferred intent.",
-    "classificationPrompt": "Choose only from the allowed list below. OUTPUT STRICTLY either a JSON array of values (1–3) or null if none is clearly evidenced. No extra text.\n\nAllowed values:\n- new_patient_onboarding\n- post_discharge\n- annual_checkup\n- open_enrollment\n- new_job_role\n- relocation\n- clinic_launch\n\n(Use only if explicitly visible.)"
-  },
+ "axis_ConsumerTimelineLifeEvents": "Purpose: extract exact on-screen phrases that explicitly indicate consumer timeline or life-event context, including micro-moments (i want to know/go/do/buy) and life transitions (career, relationship, financial) when and only when those phrases are visibly written. Examples to extract if present: \"how to\", \"near me now\", \"buy now\", \"first job\", \"career change\", \"retirement\", \"we're engaged\", \"new parents\", \"empty nest\", \"first purchase\", \"debt free\", \"start investing\", \"inheritance\", \"new patient onboarding\", \"post-discharge\", \"annual checkup\", \"open enrollment\", \"new role\", \"we're moving\". Rules: read only what is visible/legible in the creative (text, overlays, captions, badges). do not infer from imagery. do not paraphrase. do not output category names. Output format: one line, comma-separated phrases, lowercase, no duplicates, trim punctuation (keep numerals, currency, %). If none, return an empty string.",
 
-  "axis_ConsumerTimelineLifeEvents__micro_moments": {
-    "definition": "Detect explicit micro-moment signals visible in the creative (copy/UI labels/overlays). Ignore inferred search intent.",
-    "classificationPrompt": "From the list below, return a JSON array (1–3) or null. No extra text.\n\nAllowed values:\n- i_want_to_know__curiosity_sparked\n- i_want_to_know__problem_googling\n- i_want_to_know__solution_research\n- i_want_to_go__location_based\n- i_want_to_go__urgency_driven\n- i_want_to_go__convenience_seeking\n- i_want_to_do__diy_intent\n- i_want_to_do__tutorial_seeking\n- i_want_to_do__skill_building\n- i_want_to_buy__comparison_mode\n- i_want_to_buy__deal_hunting\n- i_want_to_buy__ready_to_purchase"
-  },
+  "axis_SeasonalCulturalTriggers": "Purpose: extract exact phrases that indicate seasonal/holiday/cultural triggers, including micro-seasons (weekly/monthly/quarterly cues) and cultural layers (generational, subcultural, sports, tech, fashion) when they are explicitly written. Examples to extract if present: \"monday motivation\", \"wednesday slump\", \"sunday scaries\", \"month end\", \"q4\", \"flu season\", \"year-end\", \"diwali\", \"christmas\", \"ramadan\", \"pride month\", \"season premiere\", \"playoffs\", \"iphone launch\", \"black friday\", \"fashion week\". Rules: copy only literal text seen; do not infer from colors/icons alone. no paraphrasing, no category words. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation (keep numerals, currency, %). If none, empty string.",
 
-  "axis_ConsumerTimelineLifeEvents__life_transitions": {
-    "definition": "Detect explicit life-transition contexts only when clearly shown/legible (text/visual scenario).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- career__first_job\n- career__promotion\n- career__career_change\n- career__retirement\n- relationship__dating\n- relationship__commitment\n- relationship__parenthood\n- relationship__empty_nest\n- financial__first_purchase\n- financial__debt_freedom\n- financial__investment_start\n- financial__inheritance"
-  },
+  "axis_TrendBasedViralFormats": "Purpose: extract exact visible labels/phrases that indicate platform-native trend/meme formats and (if explicitly written) lifecycle cues. Examples to extract if present: \"pov:\", \"before/after\", \"day 1 / day 7\", \"duet\", \"stitch\", \"green screen\", \"capcut template\", \"split screen\", \"side by side\", \"first look\", \"you saw it here first\", \"ultimate guide\", \"remember when\". Rules: if the format is only structural with no words, return empty string. copy literal labels only; do not guess or paraphrase. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation (keep symbols like / and : when part of the phrase). If none, empty string.",
 
-  "axis_SeasonalCulturalTriggers": {
-    "definition": "Detect explicit seasonal/holiday/cultural triggers visible in text/visuals. Ignore inferred timing.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values (common):\n- flu_season\n- year_end\n- diwali\n- christmas\n- ramadan\n- breast_cancer_awareness_month"
-  },
+  "axis_EmotionalMindsetThemes": "Purpose: extract exact emotion/mindset words or badges written in the creative, including clear emotional combinations when explicitly phrased. Examples to extract if present: \"relief\", \"trust\", \"urgent\", \"proud\", \"reassurance\", \"competence\", \"fomo\", \"bittersweet\", \"anticipation\", \"surprise\", \"impostor syndrome\", \"jomo\", short cues like \"unexpected win\", \"graduation feeling\". Rules: only copy written words; do not infer emotions from imagery. no paraphrase, no opinion words. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_SeasonalCulturalTriggers__micro_seasons": {
-    "definition": "Detect explicit weekly/monthly/quarterly timing cues presented in the creative.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- weekly__monday_motivation\n- weekly__wednesday_slump\n- weekly__thursday_anticipation\n- weekly__sunday_scaries\n- monthly__month_start\n- monthly__mid_month\n- monthly__month_end\n- quarterly__q1\n- quarterly__q2\n- quarterly__q3\n- quarterly__q4"
-  },
+  "axis_ContentArchetypesFormats": "Purpose: extract exact written labels that indicate content structure/archetype (and narrative stages if explicitly labeled). Examples to extract if present: \"how to\", \"tutorial\", \"product demo\", \"comparison\", \"testimonial\", \"checklist\", \"myth vs fact\", \"review\", and narrative labels like \"ordinary world\", \"call to adventure\", \"before\", \"after\", \"problem\", \"solution\", \"success\", \"hook\". Rules: copy only visible text; do not infer structure from layout alone. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_SeasonalCulturalTriggers__cultural_layers": {
-    "definition": "Detect explicit cultural/generational/subcultural moments indicated in copy/visuals.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- generational__boomer_nostalgia\n- generational__gen_x_cynicism\n- generational__millennial_anxiety\n- generational__gen_z_activism\n- subcultural__fandom_events\n- subcultural__movie_releases\n- subcultural__game_launches\n- subcultural__season_premieres\n- sports_moments__playoffs\n- sports_moments__drafts\n- sports_moments__trades\n- sports_moments__championships\n- tech_releases__iphone_launch\n- tech_releases__ces\n- tech_releases__black_friday\n- fashion_cycles__fashion_week\n- fashion_cycles__seasonal_collections"
-  },
+  "axis_CustomAxis_SocialProof": "Purpose: extract exact visible social proof text/symbols. Examples to extract if present: \"★★★★★\", \"4.8/5\", \"as seen in\", \"1,000+ reviews\", \"trusted by\", publication names, \"case study\", \"x clients served\", quantified outcomes (e.g., \"+37%\"), logo-bar captions like \"our partners\". Rules: preserve stars and numerals; copy literal phrasing only. Output: one line, comma-separated, lowercase where applicable (symbols remain), no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_TrendBasedViralFormats": {
-    "definition": "Detect platform-native trend/meme FORMATS only if the UI/labels/structure are visibly present.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- pov_label\n- before_after\n- duet_stitch\n- green_screen\n- meme_caption_split\n- capcut_template\n- trending_sound\n- split_screen\n- side_by_side_compare"
-  },
+  "axis_ConversionMechanics": "Purpose: extract exact phrases that signal conversion mechanics (direct response, value ladder, objection handling, risk reversal) when written. Examples to extract if present: \"limited time\", \"today only\", \"bonus\", \"stack and save\", \"free to paid\", \"buy now\", \"money-back guarantee\", \"free trial\", \"cancel anytime\", \"no credit card\". Rules: literal text only; no paraphrasing. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_TrendLifecyclePositioning": {
-    "definition": "Detect the lifecycle positioning of a visible trend when it is explicitly suggested in copy/context.",
-    "classificationPrompt": "Return exactly one value in a JSON array (or null if unclear). No extra text.\n\nAllowed values:\n- emergence\n- growth\n- peak\n- decline"
-  },
+  "axis_CognitiveBiases": "Purpose: extract exact phrases that implement cognitive biases when explicitly written. Examples to extract if present: anchoring: \"was $999, now $499\", \"compare at\"; social proof: \"people are buying now\", \"137 viewing now\"; loss aversion: \"don't miss out\"; commitment/consistency: \"take the first step\", \"answer 1 question\". Rules: copy literal phrasing including numbers/currency. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation (keep $, %, /, : if part of the phrase). If none, empty string.",
 
-  "axis_EmotionalMindsetThemes": {
-    "definition": "Detect explicit emotion/mindset terms or badges in copy/overlays (not inferred feelings).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values (simple):\n- relief\n- trust\n- urgency\n- pride\n- reassurance\n- competence\n- fomo"
-  },
+  "axis_PlatformNativeOptimization": "Purpose: extract exact platform-native feature/CTA labels written in the creative. Examples to extract if present: \"swipe up\", \"shop now\", \"tap to try\", \"use template\", \"reels\", \"stories\", \"carousel\", \"add to bag\", \"tap to install\". Rules: only literal text; do not infer from format alone. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_EmotionalMindsetThemes__emotional_cocktails": {
-    "definition": "Detect complex, explicitly signaled emotional combinations only when clearly indicated.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anticipation_joy\n- anticipation_fear\n- anticipation_anger\n- surprise_joy\n- surprise_sadness\n- surprise_fear\n- bittersweet\n- schadenfreude\n- impostor_syndrome\n- jomo"
-  },
+  "axis_DataDrivenInsights": "Purpose: extract exact phrases that indicate data-driven insights being used or referenced. Examples to extract if present: \"top searches\", \"people also asked\", \"competitor gap\", \"customer reviews\", \"from support tickets\", \"based on feedback\". Rules: copy literal phrases only. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_ContentArchetypesFormats": {
-    "definition": "Detect visible structural templates in the creative (steps, splits, quotes, checklists, etc.).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- how_to\n- product_demo\n- comparison\n- testimonial\n- objection_handling\n- checklist\n- myth_vs_fact\n- explainer\n- review"
-  },
+  "axis_SensoryPerceptualDesign": "Purpose: extract exact phrases that state sensory/perceptual design patterns or parameters when explicitly written. Examples to extract if present: \"z-pattern\", \"f-pattern\", \"gutenberg\", \"7:1 contrast\", \"4.5:1\", \"high contrast\", \"visual hierarchy\", \"parallax\", \"reveal on scroll\", \"sticky header\", \"micro-animation\", \"250ms\", \"music mood\". Rules: literal text/numbers only; if only implied visually, return empty string. Output: one line, comma-separated, lowercase (numbers/symbols unchanged), no duplicates, trim punctuation. If none, empty string.",
 
-  "axis_ContentArchetypesFormats__story_frameworks": {
-    "definition": "Detect explicit narrative frameworks if the structure is clearly shown (labels/sections).",
-    "classificationPrompt": "Return a JSON array (1–2) from the list or null. No extra text.\n\nAllowed values:\n- hero_journey\n- before_after_bridge\n- problem_agitation_solution\n- star_chain_hook"
-  },
+  "axis_BehavioralPsychology": "Purpose: extract exact phrases that call out behavioral psychology triggers when written (biases and persuasion principles). Examples to extract if present: \"anchoring\", \"social proof\", \"137 viewing now\", \"don't miss out\", \"limited spots\", \"free guide\" (reciprocity), \"expert recommended\" (authority), \"join fellow...\" (unity), \"money-back guarantee\" (risk reversal). Rules: copy what is written; include numbers. Output: one line, comma-separated, lowercase, no duplicates, trim punctuation. If none, empty string."
 
-  "axis_CustomAxis_SocialProof": {
-    "definition": "Detect explicit social proof cues (stars, review quotes, counts, client logos, press badges, quantified outcomes).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- star_ratings\n- review_snippet\n- case_counts\n- client_logo_bar\n- press_badges\n- quantified_outcomes"
-  },
-
-  "axis_ConversionMechanics": {
-    "definition": "Detect explicit conversion mechanics visible in copy/UI (not inferred intent).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- direct_response__limited_time\n- direct_response__bonus_stacking\n- value_ladder__free_to_paid\n- objection_handling_sequence\n- risk_reversal__guarantee\n- risk_reversal__free_trial"
-  },
-
-  "axis_CognitiveBiases": {
-    "definition": "Detect explicit use of cognitive bias frames as shown in copy/badges/visual metaphors.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anchoring\n- social_proof__wisdom_of_crowds\n- social_proof__authority\n- social_proof__peer\n- loss_aversion\n- commitment_consistency"
-  },
-
-  "axis_PlatformNativeOptimization": {
-    "definition": "Detect explicit platform-native optimizations called out or visually evident (features/UI).",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- algo_friendly_format\n- native_feature__stories\n- native_feature__reels\n- native_feature__carousels\n- engagement_hack_pattern\n- platform_specific_cta"
-  },
-
-  "axis_DataDrivenInsights": {
-    "definition": "Detect explicit data-driven angles called out in the creative.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- search_intent_matching\n- competitor_gap_exploitation\n- customer_review_mining\n- support_ticket_insights"
-  },
-
-  "axis_SensoryPerceptual": {
-    "definition": "Detect explicit sensory/perceptual design cues that are visible or labeled.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- visual_hierarchy\n- color_psychology\n- motion_triggers\n- audio_music_emotion"
-  },
-
-  "axis_BehavioralPsychology": {
-    "definition": "Detect explicit behavioral psychology triggers when clearly indicated.",
-    "classificationPrompt": "Return a JSON array (1–3) from the list or null. No extra text.\n\nAllowed values:\n- anchoring\n- social_proof__realtime_activity\n- loss_aversion\n- commitment_consistency\n- reciprocity\n- authority\n- scarcity\n- unity"
-  },
-
-  "axis_SensoryPerceptualDesign": {
-    "definition": "Detect specific sensory/perceptual design patterns and parameters when made explicit or clearly visible.",
-    "classificationPrompt": "Return a JSON array (1–4) from the list or null. No extra text.\n\nAllowed values:\n- hierarchy__z_pattern\n- hierarchy__f_pattern\n- hierarchy__gutenberg\n- contrast__cta_min_7_1\n- contrast__body_text_min_4_5_1\n- contrast__headline_max\n- color_emotion__red_urgency\n- color_emotion__blue_trust\n- color_emotion__green_growth\n- color_emotion__yellow_optimism\n- color_emotion__purple_luxury\n- color_emotion__orange_friendly\n- motion__micro_animation_hover_250ms\n- motion__loading_skeleton\n- motion__success_burst\n- scroll__parallax\n- scroll__reveal\n- scroll__sticky"
-  }
 
 }

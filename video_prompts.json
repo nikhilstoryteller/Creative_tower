@@ -73,50 +73,68 @@
     "axis_BehavioralFriction": "Purpose: detect friction reduced/introduced and objections handled in the creative. Do not include brand/product names.\nSources: UI flows, badges, overlays, VO reassurance/qualification.\nTokens (multi-select):\n- friction_reduction: one_click_solution, autofill_shown, simplified_process, instant_access\n- intentional_friction: scarcity_induced, exclusive_access, qualification_required, waitlist_shown\n- objection_handling: price_justification, quality_assurance, competitor_comparison, faq_addressed\nRules:\n1) Emit only tokens evidenced in visuals/text/audio.\n2) Dedupe; lowercase snake_case.\nOutput: comma-separated tokens, e.g., \"one_click_solution,instant_access,price_justification\""
 
 ,
-  "hso_hook": "Hook–Story–Offer • HOOK\nPurpose: extract concrete hook signals.\nSources: visuals, on-screen text, audio/VO.\nWhat to extract (examples, not a closed list): hook phrase, key_phrase, key_moment, visual_cue, b_roll_open.\nRules: prefer literal words if shown/spoken; otherwise use concise snake_case descriptors. No brand/product names. No opinions.\nOutput: comma-separated, lowercase snake_case tags. Empty string if none.",
-  "hso_story": "Hook–Story–Offer • STORY\nPurpose: extract the story elements presented.\nSources: visuals, text, audio/VO.\nWhat to extract: external_pain_point, internal_pain_point, journey_timeline, emotional_high_point, testimonial, us_vs_them.\nRules: evidence only; use literal phrases when visible/spoken or snake_case descriptors when purely visual. No brands, no opinions.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "hso_offer": "Hook–Story–Offer • OFFER\nPurpose: extract the offer layer.\nSources: visuals, text, audio/VO.\nWhat to extract: features_and_benefits, product_demo, cta, scarcity_urgency, social_proof.\nRules: literal phrases if shown/spoken else snake_case. Evidence only; no brands.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "hook": "Purpose: extract hook elements.\nReturn JSON with keys below; each value is a comma-separated, lowercase tag string (\"\" if none).\nKeys:\n- hook_labels → literal hook words or devices (e.g., \"hook\", bold_headline, shock_reveal)\n- key_phrases → exact hook lines shown/spoken (brand names removed)\n- key_moments → concise visual moments (e.g., product_drop, reveal_cut)\n- visual_cues → visual attention cues (e.g., arrow_pointer, highlight_glow)\n- b_roll → b-roll descriptors (e.g., product_spin, lifestyle_cutaways)\nOutput only JSON: {\"hook_labels\":\"\",\"key_phrases\":\"\",\"key_moments\":\"\",\"visual_cues\":\"\",\"b_roll\":\"\"}",
 
-  "pppp_promise": "Promise–Picture–Proof–Push • PROMISE\nPurpose: extract the opening promise/claim context.\nSources: visuals, text, audio/VO.\nWhat to extract: hook, key_phrase, target_audience_marker, cultural_seasonal_relevance.\nRules: literal if present else snake_case. No brands/opinions.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "pppp_picture": "Promise–Picture–Proof–Push • PICTURE\nPurpose: extract the illustrative picture elements.\nSources: visuals, text, audio/VO.\nWhat to extract: b_roll, journey_timeline, emotional_high_point, before_after, features_and_benefits.\nRules: evidence only; literal or snake_case.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "pppp_proof": "Promise–Picture–Proof–Push • PROOF\nPurpose: extract proof mechanisms.\nSources: visuals, text, audio/VO.\nWhat to extract: testimonial, social_proof, callout_metric, press_quote, objection_handling.\nRules: keep numbers/symbols; literal if shown; snake_case otherwise.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "pppp_push": "Promise–Picture–Proof–Push • PUSH\nPurpose: extract push-to-act elements.\nSources: visuals, text, audio/VO.\nWhat to extract: cta, scarcity_urgency, interactive_element, key_moment.\nRules: evidence only; literal or snake_case.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "story": "Purpose: extract story elements.\nJSON keys:\n- external_pain_points → concrete problems shown/said (e.g., cluttered_counter, dry_skin)\n- internal_pain_points → feelings/stakes named/clearly signaled (e.g., stress, frustration)\n- journey_timeline → timeline cues (e.g., day_1, week_4, onboarding)\n- emotional_high_points → celebratory/relief moments (e.g., success_reveal, happy_outcome)\n- testimonials → testimonial forms (e.g., talking_head, quoted_review)\n- us_vs_them → explicit contrast cues (e.g., brand_vs_generic, with_vs_without)\nOutput only JSON: {\"external_pain_points\":\"\",\"internal_pain_points\":\"\",\"journey_timeline\":\"\",\"emotional_high_points\":\"\",\"testimonials\":\"\",\"us_vs_them\":\"\"}",
 
-  "aicpbsawn_attention": "AICPBSAWN • ATTENTION\nPurpose: extract attention drivers at the open.\nSources: visuals, text, audio/VO.\nWhat to extract: hook, key_phrase, key_moment, visual_cue, b_roll_open.\nRules: literal if present; snake_case otherwise.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_interest": "AICPBSAWN • INTEREST\nPurpose: extract interest builders.\nSources: visuals, text, audio/VO.\nWhat to extract: external_pain_point, internal_pain_point, emotional_high_point, target_audience_marker.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_credibility": "AICPBSAWN • CREDIBILITY\nPurpose: extract credibility builders.\nSources: visuals, text, audio/VO.\nWhat to extract: social_proof, testimonial, press_quote, callout_metric.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_prove": "AICPBSAWN • PROVE\nPurpose: extract proving devices.\nSources: visuals, text, audio/VO.\nWhat to extract: before_after, contrast_comparison, educational_section.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_benefits": "AICPBSAWN • BENEFITS\nPurpose: extract explicit benefits/resolutions.\nSources: visuals, text, audio/VO.\nWhat to extract: features_and_benefits, resolution_external, resolution_internal.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_scarcity": "AICPBSAWN • SCARCITY\nPurpose: extract scarcity/urgency cues.\nSources: visuals, text, audio/VO.\nWhat to extract: scarcity_urgency, interactive_element, key_moment.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_action": "AICPBSAWN • ACTION\nPurpose: extract action-driving elements.\nSources: visuals, text, audio/VO.\nWhat to extract: cta, product_demo, journey_timeline.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "aicpbsawn_warn_now": "AICPBSAWN • WARN/NOW\nPurpose: extract last-mile urgency/warning cues.\nSources: visuals, text, audio/VO.\nWhat to extract: scarcity_urgency, emotional_high_point, key_phrase.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "offer": "Purpose: extract offer elements.\nJSON keys:\n- features_benefits → specific features/benefits surfaced (e.g., leakproof_lid, 10h_battery)\n- product_demo → demo actions (e.g., pour_test, drop_test, app_walkthrough)\n- cta → CTA microcopy or visual form (e.g., shop_now, learn_more, cta_button)\n- scarcity_urgency → urgency cues (e.g., limited_time, countdown_timer)\n- social_proof → social signals (e.g., ★★★★★, 10k+_reviews, logo_bar)\nOutput only JSON: {\"features_benefits\":\"\",\"product_demo\":\"\",\"cta\":\"\",\"scarcity_urgency\":\"\",\"social_proof\":\"\"}",
 
-  "bab_before": "Before–After–Bridge • BEFORE\nPurpose: extract the problem/before state.\nSources: visuals, text, audio/VO.\nWhat to extract: external_pain_point, internal_pain_point, context_frame, emotional_low_point.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "bab_after": "Before–After–Bridge • AFTER\nPurpose: extract the outcome/after state.\nSources: visuals, text, audio/VO.\nWhat to extract: emotional_high_point, resolution_external, resolution_internal, before_after.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "bab_bridge": "Before–After–Bridge • BRIDGE\nPurpose: extract mechanism that bridges before→after.\nSources: visuals, text, audio/VO.\nWhat to extract: product_demo, features_and_benefits, testimonial, cta, educational_section.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "promise": "Purpose: extract PROMISE (opening proposition).\nJSON keys:\n- hook_labels → hook words/devices\n- key_phrases → exact promise lines\n- target_audience → explicit audience callouts (e.g., runners, parents)\n- cultural_seasonal → cultural/seasonal cues (e.g., back_to_school, black_friday)\nOutput only JSON: {\"hook_labels\":\"\",\"key_phrases\":\"\",\"target_audience\":\"\",\"cultural_seasonal\":\"\"}",
 
-  "scqa_situation": "SCQA • SITUATION\nPurpose: extract situational setup/context.\nSources: visuals, text, audio/VO.\nWhat to extract: context_frame, target_audience_marker, journey_timeline, cultural_seasonal_relevance.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "scqa_complication": "SCQA • COMPLICATION\nPurpose: extract the complication/conflict.\nSources: visuals, text, audio/VO.\nWhat to extract: external_pain_point, emotional_low_point, us_vs_them, contrast_comparison.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "scqa_question": "SCQA • QUESTION\nPurpose: extract the explicit/implicit question.\nSources: visuals, text, audio/VO.\nWhat to extract: hook, key_phrase, key_moment.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "scqa_answer": "SCQA • ANSWER\nPurpose: extract answer/solution evidence.\nSources: visuals, text, audio/VO.\nWhat to extract: resolution_external, resolution_internal, features_and_benefits, testimonial, social_proof.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "picture": "Purpose: extract PICTURE (show the world/result).\nJSON keys:\n- b_roll → b-roll descriptors\n- journey_timeline → timeline cues\n- emotional_high_points → high-moment cues\n- before_after → labels/visuals for before/after\n- features_benefits → concrete benefits shown\nOutput only JSON: {\"b_roll\":\"\",\"journey_timeline\":\"\",\"emotional_high_points\":\"\",\"before_after\":\"\",\"features_benefits\":\"\"}",
 
-  "fab_feature": "FAB • FEATURE\nPurpose: extract showcased features.\nSources: visuals, text, audio/VO.\nWhat to extract: product_demo, features_and_benefits, close_up, educational_section.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "fab_advantage": "FAB • ADVANTAGE\nPurpose: extract stated/visualized advantages.\nSources: visuals, text, audio/VO.\nWhat to extract: social_proof, callout_metric, contrast_comparison, testimonial.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "fab_benefit": "FAB • BENEFIT\nPurpose: extract end benefits/results.\nSources: visuals, text, audio/VO.\nWhat to extract: before_after, emotional_high_point, resolution_internal, resolution_external.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "proof": "Purpose: extract PROOF signals.\nJSON keys:\n- testimonials → forms/sources (e.g., talking_head, text_review)\n- social_proof → ratings/counters/badges\n- callout_metrics → numeric claims (e.g., 87_percent_improvement)\n- press_quotes → press/source mentions (brand names removed; use press_quote, press_badge)\n- objection_handling → explicit rebuttals (e.g., money_back, easy_returns)\nOutput only JSON: {\"testimonials\":\"\",\"social_proof\":\"\",\"callout_metrics\":\"\",\"press_quotes\":\"\",\"objection_handling\":\"\"}",
 
-  "cccc_clear": "Clear–Concise–Compelling–Credible • CLEAR\nPurpose: extract clarity enablers.\nSources: visuals, text, audio/VO.\nWhat to extract: key_phrase, features_and_benefits, product_demo, visual_cue.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "cccc_concise": "Clear–Concise–Compelling–Credible • CONCISE\nPurpose: extract concision drivers.\nSources: visuals, text, audio/VO.\nWhat to extract: micro_moment, hook, key_moment.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "cccc_compelling": "Clear–Concise–Compelling–Credible • COMPELLING\nPurpose: extract compelling elements.\nSources: visuals, text, audio/VO.\nWhat to extract: emotional_high_point, journey_timeline, testimonial, before_after.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "cccc_credible": "Clear–Concise–Compelling–Credible • CREDIBLE\nPurpose: extract credibility evidence.\nSources: visuals, text, audio/VO.\nWhat to extract: social_proof, callout_metric, press_quote, objection_handling.\nOutput: comma-separated, lowercase. Empty string if none.",
+  "push": "Purpose: extract PUSH (final drive).\nJSON keys:\n- cta → CTA microcopy/visual forms\n- scarcity_urgency → urgency cues\n- interactive_elements → interactive UI (e.g., poll_sticker, swipe_up)\n- key_moments → late visual beats used to push\nOutput only JSON: {\"cta\":\"\",\"scarcity_urgency\":\"\",\"interactive_elements\":\"\",\"key_moments\":\"\"}",
 
-  "tas_thesis": "Thesis–Antithesis–Synthesis • THESIS\nPurpose: extract the initial thesis/positioning.\nSources: visuals, text, audio/VO.\nWhat to extract: context_frame, external_pain_point, emotional_low_point, target_audience_marker.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "tas_antithesis": "Thesis–Antithesis–Synthesis • ANTITHESIS\nPurpose: extract the counterpoint/tension.\nSources: visuals, text, audio/VO.\nWhat to extract: us_vs_them, contrast_comparison, key_moment, intensifier.\nOutput: comma-separated, lowercase. Empty string if none.",
-  "tas_synthesis": "Thesis–Antithesis–Synthesis • SYNTHESIS\nPurpose: extract the resolution/synthesis.\nSources: visuals, text, audio/VO.\nWhat to extract: resolution_external, resolution_internal, features_and_benefits, testimonial, cta.\nOutput: comma-separated, lowercase. Empty string if none."
+  "attention": "Purpose: extract ATTENTION phase.\nJSON keys:\n- hook_labels\n- key_phrases\n- key_moments\n- visual_cues\n- b_roll\nOutput only JSON: {\"hook_labels\":\"\",\"key_phrases\":\"\",\"key_moments\":\"\",\"visual_cues\":\"\",\"b_roll\":\"\"}",
 
+  "interest": "Purpose: extract INTEREST builders.\nJSON keys:\n- external_pain_points\n- internal_pain_points\n- emotional_high_points\n- target_audience\nOutput only JSON: {\"external_pain_points\":\"\",\"internal_pain_points\":\"\",\"emotional_high_points\":\"\",\"target_audience\":\"\"}",
 
+  "credibility": "Purpose: extract CREDIBILITY.\nJSON keys:\n- social_proof\n- testimonials\n- press_quotes\n- callout_metrics\nOutput only JSON: {\"social_proof\":\"\",\"testimonials\":\"\",\"press_quotes\":\"\",\"callout_metrics\":\"\"}",
 
+  "prove": "Purpose: extract PROVE elements.\nJSON keys:\n- before_after\n- contrasts_comparisons\n- educational_sections\nOutput only JSON: {\"before_after\":\"\",\"contrasts_comparisons\":\"\",\"educational_sections\":\"\"}",
 
+  "benefits": "Purpose: extract BENEFITS.\nJSON keys:\n- features_benefits\n- resolutions → external/internal resolutions\nOutput only JSON: {\"features_benefits\":\"\",\"resolutions\":\"\"}",
 
+  "scarcity": "Purpose: extract SCARCITY.\nJSON keys:\n- scarcity_urgency\n- interactive_elements\n- key_moments\nOutput only JSON: {\"scarcity_urgency\":\"\",\"interactive_elements\":\"\",\"key_moments\":\"\"}",
 
+  "action": "Purpose: extract ACTION ask.\nJSON keys:\n- cta\n- product_demo\n- journey_timeline\nOutput only JSON: {\"cta\":\"\",\"product_demo\":\"\",\"journey_timeline\":\"\"}",
+
+  "warn_now": "Purpose: extract WARN/NOW push.\nJSON keys:\n- scarcity_urgency\n- emotional_high_points\n- key_phrases\nOutput only JSON: {\"scarcity_urgency\":\"\",\"emotional_high_points\":\"\",\"key_phrases\":\"\"}",
+
+  "before": "Purpose: BEFORE state.\nJSON keys:\n- external_pain_points\n- internal_pain_points\n- context_frames\n- emotional_low_points\nOutput only JSON: {\"external_pain_points\":\"\",\"internal_pain_points\":\"\",\"context_frames\":\"\",\"emotional_low_points\":\"\"}",
+
+  "after": "Purpose: AFTER state.\nJSON keys:\n- emotional_high_points\n- resolutions\n- before_after\nOutput only JSON: {\"emotional_high_points\":\"\",\"resolutions\":\"\",\"before_after\":\"\"}",
+
+  "bridge": "Purpose: BRIDGE (solution path).\nJSON keys:\n- product_demo\n- features_benefits\n- testimonials\n- cta\n- educational_sections\nOutput only JSON: {\"product_demo\":\"\",\"features_benefits\":\"\",\"testimonials\":\"\",\"cta\":\"\",\"educational_sections\":\"\"}",
+
+  "situation": "Purpose: SITUATION.\nJSON keys:\n- context_frames\n- target_audience\n- journey_timeline\n- cultural_seasonal\nOutput only JSON: {\"context_frames\":\"\",\"target_audience\":\"\",\"journey_timeline\":\"\",\"cultural_seasonal\":\"\"}",
+
+  "complication": "Purpose: COMPLICATION.\nJSON keys:\n- external_pain_points\n- emotional_low_points\n- us_vs_them\n- contrasts_comparisons\nOutput only JSON: {\"external_pain_points\":\"\",\"emotional_low_points\":\"\",\"us_vs_them\":\"\",\"contrasts_comparisons\":\"\"}",
+
+  "question": "Purpose: QUESTION.\nJSON keys:\n- hook_labels\n- key_phrases\n- key_moments\nOutput only JSON: {\"hook_labels\":\"\",\"key_phrases\":\"\",\"key_moments\":\"\"}",
+
+  "answer": "Purpose: ANSWER.\nJSON keys:\n- resolutions\n- features_benefits\n- testimonials\n- social_proof\nOutput only JSON: {\"resolutions\":\"\",\"features_benefits\":\"\",\"testimonials\":\"\",\"social_proof\":\"\"}",
+
+  "feature": "Purpose: FEATURE.\nJSON keys:\n- product_demo\n- features_benefits\n- close_up_details → macro/close views (e.g., texture_macro)\n- educational_sections\nOutput only JSON: {\"product_demo\":\"\",\"features_benefits\":\"\",\"close_up_details\":\"\",\"educational_sections\":\"\"}",
+
+  "advantage": "Purpose: ADVANTAGE.\nJSON keys:\n- social_proof\n- callout_metrics\n- contrasts_comparisons\n- testimonials\nOutput only JSON: {\"social_proof\":\"\",\"callout_metrics\":\"\",\"contrasts_comparisons\":\"\",\"testimonials\":\"\"}",
+
+  "benefit": "Purpose: BENEFIT.\nJSON keys:\n- before_after\n- emotional_high_points\n- resolutions\nOutput only JSON: {\"before_after\":\"\",\"emotional_high_points\":\"\",\"resolutions\":\"\"}",
+
+  "clear": "Purpose: CLEAR.\nJSON keys:\n- key_phrases\n- features_benefits\n- product_demo\n- visual_cues\nOutput only JSON: {\"key_phrases\":\"\",\"features_benefits\":\"\",\"product_demo\":\"\",\"visual_cues\":\"\"}",
+
+  "concise": "Purpose: CONCISE.\nJSON keys:\n- micro_moments → concise labels (e.g., i_want_to_know)\n- hook_labels\n- key_moments\nOutput only JSON: {\"micro_moments\":\"\",\"hook_labels\":\"\",\"key_moments\":\"\"}",
+
+  "compelling": "Purpose: COMPELLING.\nJSON keys:\n- emotional_high_points\n- journey_timeline\n- testimonials\n- before_after\nOutput only JSON: {\"emotional_high_points\":\"\",\"journey_timeline\":\"\",\"testimonials\":\"\",\"before_after\":\"\"}",
+
+  "credible": "Purpose: CREDIBLE.\nJSON keys:\n- social_proof\n- callout_metrics\n- press_quotes\n- objection_handling\nOutput only JSON: {\"social_proof\":\"\",\"callout_metrics\":\"\",\"press_quotes\":\"\",\"objection_handling\":\"\"}",
+
+  "thesis": "Purpose: THESIS (setup/context).\nJSON keys:\n- context_frames\n- external_pain_points\n- emotional_low_points\n- target_audience\nOutput only JSON: {\"context_frames\":\"\",\"external_pain_points\":\"\",\"emotional_low_points\":\"\",\"target_audience\":\"\"}",
+
+  "antithesis": "Purpose: ANTITHESIS (tension/contrast).\nJSON keys:\n- us_vs_them\n- contrasts_comparisons\n- key_moments\n- intensifiers → explicit intensifying cues (e.g., fast_cut_montage)\nOutput only JSON: {\"us_vs_them\":\"\",\"contrasts_comparisons\":\"\",\"key_moments\":\"\",\"intensifiers\":\"\"}",
+
+  "synthesis": "Purpose: SYNTHESIS (resolve + ask).\nJSON keys:\n- resolutions\n- features_benefits\n- testimonials\n- cta\nOutput only JSON: {\"resolutions\":\"\",\"features_benefits\":\"\",\"testimonials\":\"\",\"cta\":\"\"}"
 
 }

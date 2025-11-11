@@ -120,5 +120,54 @@
   "thesis": "Purpose: THESIS (setup/context) as TAGS.\nValues = tags; snake_case; dedupe; \"\" if none. Empty-handling: placeholders → \"\".\nKeys:\n- context_frames\n- external_pain_points\n- emotional_low_points\n- target_audience\nOutput only JSON: {\"context_frames\":\"\",\"external_pain_points\":\"\",\"emotional_low_points\":\"\",\"target_audience\":\"\"}",
   "antithesis": "Purpose: ANTITHESIS (tension/contrast) as TAGS.\nValues = tags; snake_case; dedupe; \"\" if none. Empty-handling: placeholders → \"\".\nKeys:\n- us_vs_them\n- contrasts_comparisons\n- key_moments\n- intensifiers → explicit intensifying cues (e.g., fast_cut_montage)\nOutput only JSON: {\"us_vs_them\":\"\",\"contrasts_comparisons\":\"\",\"key_moments\":\"\",\"intensifiers\":\"\"}",
   "synthesis": "Purpose: SYNTHESIS (resolve + ask) as TAGS.\nValues = tags; snake_case; dedupe; \"\" if none. Empty-handling: placeholders → \"\".\nKeys:\n- resolutions\n- features_benefits\n- testimonials\n- cta\nOutput only JSON: {\"resolutions\":\"\",\"features_benefits\":\"\",\"testimonials\":\"\",\"cta\":\"\"}"
-
+,
+    "frameworkType": {
+    "prompt": "Determine which SINGLE creative framework the media most closely follows. Watch the opening (hook), middle (development), and close (CTA/push) to match the structural pattern. Use explicit, observable evidence from visuals, on-screen text, voiceover, sequencing, and section labels (e.g., 'Before/After', 'Proof', 'CTA'). Pick the ONE best-fit framework. If no framework is clearly evidenced, return an empty string.",
+    "values": [
+      "hook_story_offer",
+      "promise_picture_proof_push",
+      "aicpbsawn",
+      "before_after_bridge",
+      "situation_complication_question_answer",
+      "feature_advantage_benefit",
+      "clear_concise_compelling_credible",
+      "thesis_antithesis_synthesis"
+    ],
+    "definitions": {
+      "hook_story_offer": "Opens with an attention hook → develops a story (pain, journey, proof) → ends with an offer/CTA.",
+      "promise_picture_proof_push": "States a promise → paints the picture/result → shows proof (testimonials, metrics, press) → pushes action (CTA, urgency).",
+      "aicpbsawn": "Attention → Interest → Credibility → Prove → Benefits → Scarcity → Action → Warn/Now (strongly sequenced persuasion ladder).",
+      "before_after_bridge": "Shows the problematic 'Before' → desired 'After' → explains the Bridge (how the solution gets you there).",
+      "situation_complication_question_answer": "Sets the situation/context → introduces a complication → poses a question → answers with resolution/solution.",
+      "feature_advantage_benefit": "Presents a feature → explains its advantage → ties to the user benefit/outcome.",
+      "clear_concise_compelling_credible": "Emphasizes clarity of message → brevity/priority → compelling emotional/story beats → credibility signals.",
+      "thesis_antithesis_synthesis": "States a thesis/claim → presents the opposing view or contrast → synthesizes into a superior resolution/CTA."
+    },
+    "extraction_rules": [
+      "Choose EXACTLY ONE value from the list that best fits the overall structure.",
+      "Favor explicit section cues (labels like 'Before', 'After', 'Proof', 'CTA') and clear sequencing.",
+      "If two frameworks seem plausible, prefer the one with the stronger, more complete sequence across the media.",
+      "If no framework is clearly evidenced, return an empty string.",
+      "Never invent sections; use only what is observable in visuals, text, VO, and ordering."
+    ],
+    "output": "Return JSON ONLY in this exact form: {\"frameworkType\":\"<one_of_values_or_empty_string>\"}",
+    "examples": [
+      {
+        "input_summary": "Opens with 'Struggling with dry skin?' → user journey + testimonial → 'Get 20% off today' CTA.",
+        "output": { "frameworkType": "hook_story_offer" }
+      },
+      {
+        "input_summary": "Screenshot headline 'Promise: Sleep better tonight' → b-roll of calm night routine → review stars + press badge → 'Buy now' with timer.",
+        "output": { "frameworkType": "promise_picture_proof_push" }
+      },
+      {
+        "input_summary": "Title cards: Before (messy desk) → After (tidy) → Bridge: demo of organizer in 3 steps.",
+        "output": { "frameworkType": "before_after_bridge" }
+      },
+      {
+        "input_summary": "No clear sections or sequence; montage only.",
+        "output": { "frameworkType": "" }
+      }
+    ]
+  }
 }

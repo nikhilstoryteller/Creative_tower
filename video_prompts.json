@@ -103,60 +103,34 @@
     "antithesis": "Purpose: ANTITHESIS (tension/contrast) as TAGS.\nValues = tags; snake_case; dedupe; \"\" if none. Empty-handling: placeholders → \"\".\nKeys:\n- us_vs_them\n- contrasts_comparisons\n- key_moments\n- intensifiers → explicit intensifying cues (e.g., fast_cut_montage)\nOutput only JSON: {\"us_vs_them\":\"\",\"contrasts_comparisons\":\"\",\"key_moments\":\"\",\"intensifiers\":\"\"}",
     "synthesis": "Purpose: SYNTHESIS (resolve + ask) as TAGS.\nValues = tags; snake_case; dedupe; \"\" if none. Empty-handling: placeholders → \"\".\nKeys:\n- resolutions\n- features_benefits\n- testimonials\n- cta\nOutput only JSON: {\"resolutions\":\"\",\"features_benefits\":\"\",\"testimonials\":\"\",\"cta\":\"\"}",
     "frameworkType": {
-        "prompt": "Determine which SINGLE creative framework the media most closely follows. Watch the opening (hook), middle (development), and close (CTA/push) to match the structural pattern. Use explicit, observable evidence from visuals, on-screen text, voiceover, sequencing, and section labels (e.g., 'Before/After', 'Proof', 'CTA'). Pick the ONE best-fit framework. If no framework is clearly evidenced, return an empty string.",
-        "values": [
-            "hook_story_offer",
-            "promise_picture_proof_push",
-            "aicpbsawn",
-            "before_after_bridge",
-            "situation_complication_question_answer",
-            "feature_advantage_benefit",
-            "clear_concise_compelling_credible",
-            "thesis_antithesis_synthesis"
-        ],
-        "definitions": {
-            "hook_story_offer": "Opens with an attention hook → develops a story (pain, journey, proof) → ends with an offer/CTA.",
-            "promise_picture_proof_push": "States a promise → paints the picture/result → shows proof (testimonials, metrics, press) → pushes action (CTA, urgency).",
-            "aicpbsawn": "Attention → Interest → Credibility → Prove → Benefits → Scarcity → Action → Warn/Now (strongly sequenced persuasion ladder).",
-            "before_after_bridge": "Shows the problematic 'Before' → desired 'After' → explains the Bridge (how the solution gets you there).",
-            "situation_complication_question_answer": "Sets the situation/context → introduces a complication → poses a question → answers with resolution/solution.",
-            "feature_advantage_benefit": "Presents a feature → explains its advantage → ties to the user benefit/outcome.",
-            "clear_concise_compelling_credible": "Emphasizes clarity of message → brevity/priority → compelling emotional/story beats → credibility signals.",
-            "thesis_antithesis_synthesis": "States a thesis/claim → presents the opposing view or contrast → synthesizes into a superior resolution/CTA."
-        },
-        "extraction_rules": [
-            "Choose EXACTLY ONE value from the list that best fits the overall structure.",
-            "Favor explicit section cues (labels like 'Before', 'After', 'Proof', 'CTA') and clear sequencing.",
-            "If two frameworks seem plausible, prefer the one with the stronger, more complete sequence across the media.",
-            "If no framework is clearly evidenced, return an empty string.",
-            "Never invent sections; use only what is observable in visuals, text, VO, and ordering."
-        ],
-        "output": "Return JSON ONLY in this exact form: {\"frameworkType\":\"<one_of_values_or_empty_string>\"}",
-        "examples": [
-            {
-                "input_summary": "Opens with 'Struggling with dry skin?' → user journey + testimonial → 'Get 20% off today' CTA.",
-                "output": {
-                    "frameworkType": "hook_story_offer"
-                }
-            },
-            {
-                "input_summary": "Screenshot headline 'Promise: Sleep better tonight' → b-roll of calm night routine → review stars + press badge → 'Buy now' with timer.",
-                "output": {
-                    "frameworkType": "promise_picture_proof_push"
-                }
-            },
-            {
-                "input_summary": "Title cards: Before (messy desk) → After (tidy) → Bridge: demo of organizer in 3 steps.",
-                "output": {
-                    "frameworkType": "before_after_bridge"
-                }
-            },
-            {
-                "input_summary": "No clear sections or sequence; montage only.",
-                "output": {
-                    "frameworkType": ""
-                }
-            }
-        ]
-    }
+    "prompt": "Classify the media into EXACTLY ONE framework from the allowed list. Use only observable sequencing, on-screen labels, VO chaptering, and clear structural cues. If NONE match, return an empty string. NEVER invent new labels (e.g., 'styling_guides').\n\nAllowed values (ENUM ONLY):\n- hook_story_offer\n- promise_picture_proof_push\n- aicpbsawn\n- before_after_bridge\n- situation_complication_question_answer\n- feature_advantage_benefit\n- clear_concise_compelling_credible\n- thesis_antithesis_synthesis\n\nDecision rules (strict):\n1) HARD ENUM: Output must be one of the 8 values above or \"\". Any other token (e.g., 'styling_guides', 'tips_list', 'montage') is INVALID → return \"\".\n2) Evidence first: Prefer explicit section cards/VO (e.g., \"Before/After\", \"Proof\", \"CTA\"), ordered progression, or repeated chapter markers.\n3) Tie-break (if two seem plausible): pick the one with MORE explicit labeled steps; if still tied, choose the one whose final step is clearest (e.g., 'Offer/CTA' vs generic close). If still unclear → return \"\".\n4) Do NOT infer from topic alone. Structure must be visible/audible in the media.\n\nQuick cue guide (non-exhaustive, do NOT output these words):\n• hook_story_offer → hook/open → story (pain, journey, proof) → offer/CTA.\n• promise_picture_proof_push → promise/claim → picture/result → proof (reviews/press/metrics) → push (CTA/urgency).\n• aicpbsawn → attention → interest → credibility → prove → benefits → scarcity → action → warn/now.\n• before_after_bridge → before (problem) → after (desired) → bridge (how/steps/demo).\n• situation_complication_question_answer → situation/context → complication → question → answer/solution.\n• feature_advantage_benefit → feature → advantage → user benefit.\n• clear_concise_compelling_credible → clarity → brevity → compelling beats → credibility.\n• thesis_antithesis_synthesis → thesis/claim → antithesis/contrast → synthesis/resolution.\n\nOutput format (STRICT JSON ONLY): {\"frameworkType\":\"<one_of_enum_or_empty_string>\"}",
+    "values": [
+      "hook_story_offer",
+      "promise_picture_proof_push",
+      "aicpbsawn",
+      "before_after_bridge",
+      "situation_complication_question_answer",
+      "feature_advantage_benefit",
+      "clear_concise_compelling_credible",
+      "thesis_antithesis_synthesis"
+    ],
+    "examples": [
+      {
+        "input_summary": "Opens with 'Struggling with X?' → shows user journey + testimonial → ends with 'Get 20% off' CTA.",
+        "output": { "frameworkType": "hook_story_offer" }
+      },
+      {
+        "input_summary": "Cards: Before → After → Bridge: 3-step demo to get there.",
+        "output": { "frameworkType": "before_after_bridge" }
+      },
+      {
+        "input_summary": "No labeled sections; loose montage; generic tips.",
+        "output": { "frameworkType": "" }
+      },
+      {
+        "input_summary": "Design styling tips only; no clear sequence.",
+        "output": { "frameworkType": "" }
+      }
+    ]
+  }
 }
